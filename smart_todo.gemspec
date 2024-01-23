@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "smart_todo/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "smart_todo"
+  spec.name          = "nxt_smart_todo"
   spec.version       = SmartTodo::VERSION
   spec.authors       = ["Shopify"]
   spec.email         = ["rails@shopify.com"]
@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = spec.homepage + "/releases"
-  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.required_ruby_version = ">= 3.0.0"
 
