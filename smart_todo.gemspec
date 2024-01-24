@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "smart_todo/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "nxt_smart_todo"
+  spec.name          = "smart_todo"
   spec.version       = SmartTodo::VERSION
   spec.authors       = ["Shopify"]
   spec.email         = ["rails@shopify.com"]
