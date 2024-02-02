@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+GEM_VERSION=$(ruby -e '$LOAD_PATH << File.join(File.dirname(__FILE__), "lib"); require "smart_todo/version"; print SmartTodo::VERSION')
+
+gem build smart_todo.gemspec
+
+if [ ! -d "pkg" ]; then
+  mkdir pkg
+fi
+
+mv smart_todo-$GEM_VERSION.gem pkg/smart_todo-$GEM_VERSION.gem
+
+git tag -m "Release $GEM_VERSION" -a v$GEM_VERSION HEAD
+git push origin --tags
+
+gem push --key github --host https://rubygems.pkg.github.com/nxt-insurance pkg/smart_todo-$GEM_VERSION.gem
