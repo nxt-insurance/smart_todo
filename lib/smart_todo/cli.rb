@@ -69,6 +69,9 @@ module SmartTodo
         opts.on("--read-repository-config") do |_repository_config|
           @options[:repository_config] = GitConfigParser.new
         end
+        opts.on("--repo [REPO]", "Repository name to include in notifications") do |repo|
+          @options[:repo] = repo || File.basename(Dir.pwd)
+        end
       end
     end
 
