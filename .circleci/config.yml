@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  tests_and_linters::
+  tests_and_linters:
     docker:
       - image: "cimg/ruby:3.4.2"
     environment:
@@ -12,23 +12,15 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - run: bundle config rubygems.pkg.github.com ${GITHUB_PACKAGE_REGISTRY_USER}:${GITHUB_PACKAGE_REGISTRY_ACCESS_TOKEN}
       - ruby/install-deps:
           key: gems-v6
           include-branch-in-cache-key: false
       - run:
-          command: "bundle exec rubocop --format progress"
           name: "Rubocop"
+          command: "bundle exec rake rubocop"
       - run:
-          name: "RSpec"
-          command: |
-            bundle exec rspec \
-              --color \
-              --format progress \
-              --require spec_helper \
-              --fail-fast \
-              --format RspecJunitFormatter \
-              --out /tmp/rspec/junit.xml
+          name: "Minitest"
+          command: "bundle exec rake test"
       - store_artifacts:
           path: /tmp/rspec/
           destination: rspec
@@ -42,4 +34,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - tests
+      - tests_and_linters
