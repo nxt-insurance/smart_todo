@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/nxt_insurance/smart_todo"
   spec.license       = "MIT"
 
-  spec.metadata['allowed_push_host'] = 'https://rubygems.pkg.github.com/nxt-insurance'
+  spec.metadata["allowed_push_host"] = "https://rubygems.pkg.github.com/nxt-insurance"
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = spec.homepage + "/releases"
