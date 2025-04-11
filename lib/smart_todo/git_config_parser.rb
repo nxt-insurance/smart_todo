@@ -34,7 +34,10 @@ module SmartTodo
     # git@git.domain.com:organization/repo.git
     # TODO Gitlab and Bitbucket urls are slightly different so it wont work for them as of yet
     def github_repo_url
-      "https://" + self.read_value('remote "origin"', 'url').split('@').last.gsub(':', '/').gsub(/\.git$/, "") + "/blob/HEAD/"
+      "https://" + read_value('remote "origin"', "url").split("@").last.gsub(":", "/").gsub(
+        /\.git$/,
+        "",
+      ) + "/blob/HEAD/"
     end
   end
 end

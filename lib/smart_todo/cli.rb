@@ -66,7 +66,7 @@ module SmartTodo
         opts.on("--dispatcher DISPATCHER") do |dispatcher|
           @options[:dispatcher] = dispatcher
         end
-        opts.on("--read-repository-config") do |repository_config|
+        opts.on("--read-repository-config") do |_repository_config|
           @options[:repository_config] = GitConfigParser.new
         end
       end

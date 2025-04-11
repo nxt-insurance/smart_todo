@@ -169,7 +169,16 @@ module SmartTodo
           assert_output(".") do
             assert_equal(
               0,
-              cli.run([file.path, "--slack_token", "123", "--fallback_channel", '#general"', "--dispatcher", "slack", "--read-repository-config"]),
+              cli.run([
+                file.path,
+                "--slack_token",
+                "123",
+                "--fallback_channel",
+                '#general"',
+                "--dispatcher",
+                "slack",
+                "--read-repository-config",
+              ]),
             )
           end
         end

@@ -93,7 +93,7 @@ module SmartTodo
       end
 
       def filepath_or_url
-        if  @options.has_key? :repository_config
+        if @options.key?(:repository_config)
           return @options[:repository_config].github_repo_url + @file
         end
 
