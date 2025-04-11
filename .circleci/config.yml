@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  tests_and_linters::
+    docker:
+      - image: "cimg/ruby:3.4.2"
+    environment:
+      COVERAGE: "false"
+      RACK_ENV: test
+      RAILS_ENV: test
+    parallelism: 1
+    resource_class: medium
+    steps:
+      - checkout
+      - run: bundle config rubygems.pkg.github.com ${GITHUB_PACKAGE_REGISTRY_USER}:${GITHUB_PACKAGE_REGISTRY_ACCESS_TOKEN}
+      - ruby/install-deps:
+          key: gems-v6
+          include-branch-in-cache-key: false
+      - run:
+          command: "bundle exec rubocop --format progress"
+          name: "Rubocop"
+      - run:
+          name: "RSpec"
+          command: |
+            bundle exec rspec \
+              --color \
+              --format progress \
+              --require spec_helper \
+              --fail-fast \
+              --format RspecJunitFormatter \
+              --out /tmp/rspec/junit.xml
+      - store_artifacts:
+          path: /tmp/rspec/
+          destination: rspec
+      - store_test_results:
+          path: /tmp/rspec/
+
+orbs:
+  ruby: circleci/ruby@2.1
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - tests
